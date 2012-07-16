@@ -10,7 +10,7 @@ on Wikipedia.
 Origin
 ------
 
-Recently I was asked to construct a regular expression mathing certain
+Recently I was asked to construct a regular expression matching certain
 numbers. I managed to construct a correct regular expression but was
 surprised by the length. I did not expect it to be so long.
 
