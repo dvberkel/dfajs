@@ -13,7 +13,7 @@ describe("a State", function(){
     
     describe("(final)", function(){
 	it("should only accept the empty string", function(){
-	    var state = new FA.State({ final : true });
+	    var state = new FA.State({ "final" : true });
 
 	    expect(state).toAccept("");
 	    expect(state).not.toAccept("A");
@@ -24,7 +24,7 @@ describe("a State", function(){
     it ("should be able to transition to an other State", function(){
 	var state = new FA.State();
 
-	state.under("A").transitionsTo(new FA.State({ final : true }));
+	state.under("A").transitionsTo(new FA.State({ "final" : true }));
 
 	expect(state).toAccept("A");
     });

@@ -4,7 +4,7 @@
     };
 
     var State = Backbone.Model.extend({
-	defaults : { final : false, transitions : {} },
+	defaults : { "final" : false, transitions : {} },
 
 	accept : function(target){
 	    if (isEmptyString(target)) {
@@ -29,7 +29,7 @@
 		transitionsTo : function(finish){
 		    start._transitions(symbol).push(finish);
 		}
-	    }
+	    };
 	},
 
 	_isFinal : function(){
