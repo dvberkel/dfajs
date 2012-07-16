@@ -4,7 +4,11 @@
     };
 
     var State = Backbone.Model.extend({
-	defaults : { "final" : false, transitions : {} },
+	defaults : { "final" : false },
+
+        initialize : function(){
+	    this.set({ "transitions" : {} });  
+	},
 
 	accept : function(target){
 	    if (isEmptyString(target)) {
@@ -38,6 +42,7 @@
 
 	_transitions : function(symbol) {
 	    var transitions = this.get("transitions");
+	    if (transitions)
 	    if (! transitions.hasOwnProperty(symbol)) {
 		transitions[symbol] = [];
 	    }

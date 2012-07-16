@@ -33,12 +33,13 @@ describe("a State", function(){
 
     it ("should be able to transition to an final State via an other State", function(){
 	var state = new FA.State();
-
+	
 	state
 	  .under("A").transitionsTo(new FA.State())
 	  .under("B").transitionsTo(new FA.State({ "final" : true }));
 
 	expect(state).not.toAccept("");
+	expect(state).not.toAccept("A");
 	expect(state).toAccept("AB");
     });
 });
