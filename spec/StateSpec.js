@@ -65,4 +65,15 @@ describe("a State", function(){
 	expect(state).toAccept("A");
 	expect(state).not.toAccept("AB");
     });
+
+    it ("should be able to transition to itself", function(){
+	var state = new FA.State({ "final" : true });
+	
+	state.under("A").transitionsTo(state);
+
+	expect(state).toAccept("");
+	expect(state).toAccept("A");
+	expect(state).toAccept("AA");
+	expect(state).toAccept("AAA");
+    });
 });
