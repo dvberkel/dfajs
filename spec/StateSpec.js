@@ -20,4 +20,12 @@ describe("a State", function(){
 	    expect(state).not.toAccept("B");
 	});
     });
+
+    it ("should be able to transition to an other State", function(){
+	var state = new FA.State();
+
+	state.under("A").transitionsTo(new FA.State({ final : true }));
+
+	expect(state).toAccept("A");
+    });
 });
