@@ -26,7 +26,9 @@ describe("a State", function(){
 
 	state.under("A").transitionsTo(new FA.State({ "final" : true }));
 
+	expect(state).not.toAccept("");
 	expect(state).toAccept("A");
+	expect(state).not.toAccept("B");
     });
 
     it ("should be able to transition to an final State via an other State", function(){
@@ -36,6 +38,7 @@ describe("a State", function(){
 	  .under("A").transitionsTo(new FA.State())
 	  .under("B").transitionsTo(new FA.State({ "final" : true }));
 
+	expect(state).not.toAccept("");
 	expect(state).toAccept("AB");
     });
 });
