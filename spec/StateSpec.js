@@ -42,4 +42,16 @@ describe("a State", function(){
 	expect(state).not.toAccept("A");
 	expect(state).toAccept("AB");
     });
+
+    it ("should be able to transition under different symbols", function(){
+	var state = new FA.State();
+	
+	state.under("A").transitionsTo(new FA.State({ "final" : true }));
+	state.under("B").transitionsTo(new FA.State({ "final" : true }));
+
+	expect(state).not.toAccept("");
+	expect(state).toAccept("A");
+	expect(state).toAccept("B");
+	expect(state).not.toAccept("AB");
+    });
 });
