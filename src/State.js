@@ -1,9 +1,17 @@
 (function(Backbone, FA, undefined){
+    var isEmptyString = function(target){
+	return target === "";
+    };
+
     var State = Backbone.Model.extend({
 	defaults : { final : false },
 
 	accept : function(target){
-	    return this.get("final") && target === "";
+	    return this._isFinal() && isEmptyString(target);
+	},
+
+	_isFinal : function(){
+	    return this.get("final");
 	}
     });
 
