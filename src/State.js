@@ -18,8 +18,13 @@
 		var transitions = this._transitions(head);
 		if (transitions.length > 0) {
 		    var tail = target.slice(1);
-		    var state = transitions[0];
-		    return state.accept(tail);
+		    for (var index = 0; index < transitions.length; index++) {
+			var state = transitions[index];
+			if (state.accept(tail)) {
+			    return true;
+			}
+		    }
+		    return false;
 		} else {
 		    return false;
 		}

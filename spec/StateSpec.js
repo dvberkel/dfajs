@@ -54,4 +54,15 @@ describe("a State", function(){
 	expect(state).toAccept("B");
 	expect(state).not.toAccept("AB");
     });
+
+    it ("should be able to transition to different States under same symbol", function(){
+	var state = new FA.State();
+	
+	state.under("A").transitionsTo(new FA.State());
+	state.under("A").transitionsTo(new FA.State({ "final" : true }));
+
+	expect(state).not.toAccept("");
+	expect(state).toAccept("A");
+	expect(state).not.toAccept("AB");
+    });
 });
