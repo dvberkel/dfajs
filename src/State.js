@@ -28,6 +28,7 @@
 	    return {
 		transitionsTo : function(finish){
 		    start._transitions(symbol).push(finish);
+		    return finish;
 		}
 	    };
 	},

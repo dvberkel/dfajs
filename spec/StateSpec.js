@@ -21,11 +21,21 @@ describe("a State", function(){
 	});
     });
 
-    it ("should be able to transition to an other State", function(){
+    it ("should be able to transition to a final State", function(){
 	var state = new FA.State();
 
 	state.under("A").transitionsTo(new FA.State({ "final" : true }));
 
 	expect(state).toAccept("A");
+    });
+
+    it ("should be able to transition to an final State via an other State", function(){
+	var state = new FA.State();
+
+	state
+	  .under("A").transitionsTo(new FA.State())
+	  .under("B").transitionsTo(new FA.State({ "final" : true }));
+
+	expect(state).toAccept("AB");
     });
 });
