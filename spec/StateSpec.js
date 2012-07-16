@@ -10,4 +10,14 @@ describe("a State", function(){
 	expect(state).not.toAccept("A");
 	expect(state).not.toAccept("B");
     });
+    
+    describe("(final)", function(){
+	it("should only accept the empty string", function(){
+	    var state = new FA.State({ final : true });
+
+	    expect(state).toAccept("");
+	    expect(state).not.toAccept("A");
+	    expect(state).not.toAccept("B");
+	});
+    });
 });
