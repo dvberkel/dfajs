@@ -7,7 +7,7 @@ beforeEach(function() {
 		return "Expected a state to accept " + target;
 	    };
 	    
-	    return actual.accept(target) === true;
+	    return actual.accept(target);
 	}
     });
 });

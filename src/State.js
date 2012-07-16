@@ -20,7 +20,6 @@
 		    return false;
 		}
 	    }
-	    return this._isFinal() && isEmptyString(target);
 	},
 
 	under : function(symbol) {
