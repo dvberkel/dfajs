@@ -12,7 +12,14 @@
 
 	accept : function(target){
 	    if (isEmptyString(target)) {
-		return this._isFinal();
+		var options = this._startOptions();
+		for (var current = 0; current < options.length; current++) {
+		    var option = options[current];
+		    if (option._isFinal()) {
+			return true;
+		    }
+		}
+		return false;
 	    } else {
 		var head = target.slice(0,1);
 		var options = this._startOptions();
