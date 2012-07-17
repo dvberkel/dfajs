@@ -4,7 +4,7 @@ beforeEach(function() {
 	    var actual = this.actual;
 
 	    this.message = function() {
-		return "Expected a state to accept " + target;
+		return "Expected a state to accept '" + target + "'";
 	    };
 	    
 	    return actual.accept(target);

@@ -15,19 +15,21 @@
 		return this._isFinal();
 	    } else {
 		var head = target.slice(0,1);
-		var transitions = this._transitions(head);
-		if (transitions.length > 0) {
-		    var tail = target.slice(1);
-		    for (var index = 0; index < transitions.length; index++) {
-			var state = transitions[index];
-			if (state.accept(tail)) {
-			    return true;
+		var options = this._startOptions();
+		for (var current = 0; current < options.length; current++) {
+		    var option = options[current];
+		    var transitions = option._transitions(head);
+		    if (transitions.length > 0) {
+			var tail = target.slice(1);
+			for (var index = 0; index < transitions.length; index++) {
+			    var state = transitions[index];
+			    if (state.accept(tail)) {
+				return true;
+			    }
 			}
 		    }
-		    return false;
-		} else {
-		    return false;
 		}
+		return false;
 	    }
 	},
 
@@ -52,6 +54,19 @@
 		transitions[symbol] = [];
 	    }
 	    return transitions[symbol];
+	},
+
+        _startOptions : function() {
+	    var result = [this];
+	    var toVisit = [this];
+	    while (toVisit.length > 0) {
+		var current = toVisit[0];
+		toVisit = toVisit.slice(1);
+		var transitions = current._transitions("");
+		result = result.concat(transitions);
+		toVisit = toVisit.concat(transitions);
+	    }
+	    return result;
 	}
     });
 

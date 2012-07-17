@@ -76,4 +76,16 @@ describe("a State", function(){
 	expect(state).toAccept("AA");
 	expect(state).toAccept("AAA");
     });
+
+    it ("should be able to make epsilon transitions at the start", function(){
+	var state = new FA.State();
+	
+	state
+	  .under("").transitionsTo(new FA.State())
+	  .under("A").transitionsTo(new FA.State({ "final" : true }));
+
+	expect(state).not.toAccept("");
+	expect(state).toAccept("A");
+	expect(state).not.toAccept("B");
+    });
 });
