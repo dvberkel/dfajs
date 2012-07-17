@@ -1,4 +1,4 @@
-(function(Backbone, FA, undefined){
+(function(_, Backbone, FA, undefined){
     var isEmptyString = function(target){
 	return target === "";
     };
@@ -12,14 +12,9 @@
 
 	accept : function(target){
 	    if (isEmptyString(target)) {
-		var options = this._startOptions();
-		for (var current = 0; current < options.length; current++) {
-		    var option = options[current];
-		    if (option._isFinal()) {
-			return true;
-		    }
-		}
-		return false;
+		return _.any(_.map(this._startOptions(), function(option){
+		    return option._isFinal();
+		}));
 	    } else {
 		var head = target.slice(0,1);
 		var options = this._startOptions();
@@ -78,4 +73,4 @@
     });
 
     FA.State = State;    
-})(Backbone, FA);
+})(_, Backbone, FA);
