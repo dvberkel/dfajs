@@ -17,21 +17,12 @@
 		}));
 	    } else {
 		var head = target.slice(0,1);
-		var options = this._startOptions();
-		for (var current = 0; current < options.length; current++) {
-		    var option = options[current];
-		    var transitions = option._transitions(head);
-		    if (transitions.length > 0) {
-			var tail = target.slice(1);
-			for (var index = 0; index < transitions.length; index++) {
-			    var state = transitions[index];
-			    if (state.accept(tail)) {
-				return true;
-			    }
-			}
-		    }
-		}
-		return false;
+		var tail = target.slice(1);
+		return _.any(_.map(this._startOptions(), function(option){
+		    return _.any(_.map(option._transitions(head), function(state){
+		        return state.accept(tail);
+		    }));
+                }));
 	    }
 	},
 
